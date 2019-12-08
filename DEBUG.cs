@@ -26,10 +26,12 @@ public class DEBUG_audio : MonoBehaviour
             t += dt;
             float f = 220f * Mathf.Pow(2, index / 12f);
 
-            float h = a * Mathf.Pow(64, -t) * Mathf.Sin(2 * Mathf.PI * f * t);
-            
+            float damp = Mathf.Pow(64, -t),
+                  wave = Mathf.Sin(2 * Mathf.PI * f * t);
+
+            float h = a * damp * wave;
             //left
-            data[i] =  h;
+            data[i] = h;
             //right
             data[i + 1] = h;
         }
