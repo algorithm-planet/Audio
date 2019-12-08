@@ -21,13 +21,17 @@ public class DEBUG_audio : MonoBehaviour
           dt;
     private void OnAudioFilterRead(float[] data, int channels)
     {
-        for(int i = 0; i < data.Length; i += 2 )
+        for(int i = 0; i < data.Length; i += 2)
         {
             t += dt;
             float f = 220f * Mathf.Pow(2, index / 12f);
 
-            data[i] = a * Mathf.Pow(64, -t) * Mathf.Sin(2 * Mathf.PI * f * t);
-            data[i + 1] = data[i];
+            float h = a * Mathf.Pow(64, -t) * Mathf.Sin(2 * Mathf.PI * f * t);
+            
+            //left
+            data[i] =  h;
+            //right
+            data[i + 1] = h;
         }
     }
 }
